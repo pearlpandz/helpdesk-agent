@@ -1,0 +1,7 @@
+google-adk
+google-genai
+python-dotenv
+psycopg2-binary
+requests
+slack-sdk
+openai
