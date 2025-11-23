@@ -74,10 +74,10 @@ Traditional helpdesk systems suffer from:
 Our system uses a **multi-agent architecture** where specialized AI agents handle different aspects of customer support. View the architecture diagram: [Open architecture diagram](architecture.png)
 
 - Root Agent (Coordinator): analyzes user intent, maintains context, and routes requests to specialist agents.
-- RAG Agent (Knowledge Base): performs semantic search over the Supabase vector DB (OpenAI embeddings) and generates knowledge-based responses.
+- RAG Agent (Knowledge Base): performs semantic search over the PostgreSQL vector DB (OpenAI embeddings) and generates knowledge-based responses.
 - Ticket Agent (Ticket CRUD): creates, retrieves, and updates support tickets via REST API and notifies the support team through the MCP/Slack tool.
 - Agent Tools & Integrations: AgentTool wrappers expose tools (search, create_ticket, get_ticket_details, post_to_slack) so agents can call external systems securely.
-- High-level flow: User → Root Agent → (RAG Agent | Ticket Agent) → Tool calls → External systems (Supabase, PostgreSQL, Slack)
+- High-level flow: User → Root Agent → (RAG Agent | Ticket Agent) → Tool calls → External systems (PostgreSQL, Slack)
 
 This modular design enables easy extension (new agents/tools), clear observability of routing and tool usage, and autonomous escalation when human intervention is required.
 
@@ -100,7 +100,7 @@ This modular design enables easy extension (new agents/tools), clear observabili
          └──────────┬──────────┘      └─────────┬──────────┘
                     │                            │
          ┌──────────▼──────────┐      ┌─────────▼──────────┐
-         │  Supabase Vector DB │      │   Create Ticket    │
+         │  PostgreSql vectrdb │      │   Create Ticket    │
          │  (Embeddings)       │      │   Get Ticket       │
          │  • Postgres         │      │   Store Details    │
          │  • PGVector         │      └─────────┬──────────┘
@@ -142,7 +142,7 @@ This project demonstrates **6+ key concepts** from the course:
 
 ### 1. ✅ Multi-Agent System
 
-- **Root Agent (RAGCoordinator)**: Orchestrates and routes requests
+- **Root Agent (RAG coordinator)**: Orchestrates and routes requests
 - **RAG Agent**: Handles knowledge base queries using semantic search
 - **Ticket Log Agent**: Manages ticket operations (create, read, update)
 - **Agent Tools**: Inter-agent communication using `AgentTool()`
@@ -393,7 +393,7 @@ User receives ticket reference number
 
 ```python
 # Install required packages
-!pip install supabase google-adk openai
+!pip install postgreSQL google-adk openai
 
 # Import dependencies
 import os
@@ -430,7 +430,7 @@ SLACK_CHANNEL_ID = os.environ.get("SLACK_CHANNEL_ID")
 ### Step 3: Initialize PostgreSQL Vector Database
 
 ```sql
--- In Supabase SQL Editor, create vector extension
+-- In PostgreSQL SQL Editor, create vector extension
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Create documents table
