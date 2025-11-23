@@ -1,8 +1,12 @@
-# 🤖 AI-Powered Helpdesk Agent System
-
 ## Kaggle/Google 5-Day AI Agent Course - Capstone Project
 
----
+We attended the 5-Day AI Agents Intensive Course organized by Google and Kaggle during the 10th - 14th Nov'25.
+
+Thanks to Google and Kaggle for this incredible learning opportunity!
+
+As part of the course, Google assigned a capstone project. We created an AI-Powered Helpdesk Agent system and submitted to demonstrate our work.
+
+# AI-Powered Helpdesk Agent System
 
 ## 📋 Table of Contents
 
